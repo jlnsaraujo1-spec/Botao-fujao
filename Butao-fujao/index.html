@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Você Me ama?</title>
+
+    <style>
+        body {
+            background-color: #bd2020;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+        } 
+        .painel {
+            position: relative; 
+            background-color: rgb(255, 255, 255);
+            width: 600px;  
+            height: 600px;
+            border-radius: 25px;
+            text-align: center;
+            padding-top: 60px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-sizing: border-box;
+        }
+
+        /* --- NOVA CAIXA PARA CENTRALIZAR OS BOTÕES COORDENADOS --- */
+        .botoes-container {
+            display: inline-block;
+            position: relative;
+            margin-top: 40px;
+            width: 300px;  /* Espaço total para os dois botões ficarem lado a lado */
+            height: 80px;  /* Mesma altura dos botões */
+        }
+
+        #SIM {
+            display: inline-block;
+            line-height: 80px;   
+            text-decoration: none;
+            color: black;
+            height: 80px;
+            width: 100px;
+            border: 2px solid rgb(0, 0, 0); 
+            border-radius: 10px;
+            font-weight: bold;
+            position: absolute;
+            left: 0;             /* Fixa o SIM no lado esquerdo do container */
+            top: 0;
+            z-index: 10;       
+        }
+
+        #NAO {
+            position: absolute; 
+            height: 80px;
+            width: 100px;
+            border: 2px solid rgb(0, 0, 0);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #eee;
+            right: 0;            /* Fixa o NÃO inicial no lado direito do container */
+            top: 0;
+            z-index: 20; 
+        }
+
+        #imagem {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            z-index: 5; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="painel" id="meuPainel">
+        <h1>Você me ama?</h1>
+        
+        <div class="botoes-container">
+            <a id="SIM" href="https://www.youtube.com/watch?v=SE7bba1OU7A&list=RDSE7bba1OU7A&start_radio=1"> SIM </a>
+            <button onmouseover="fuja()" id="NAO">NÃO</button>
+        </div>
+
+        <img id="imagem" src="https://media.tenor.com/21zsPqXxNVgAAAAM/jester-entertaining-princess-jester-dancing.gif" alt="Imagem">
+    </div>
+</body>
+
+<script>
+    function fuja() {
+        var naoButton = document.getElementById("NAO");
+        var painel = document.getElementById("meuPainel");
+
+        var larguraPainel = painel.clientWidth;
+        var alturaPainel = painel.clientHeight;
+
+        var maxX = larguraPainel - naoButton.offsetWidth;
+        var maxY = alturaPainel - naoButton.offsetHeight;
+
+        var aleatoriox = Math.floor(Math.random() * maxX);
+        var aleatorioy = Math.floor(Math.random() * maxY);
+
+        // Assim que o mouse passa por cima, ele sai do container e ganha a liberdade do painel
+        naoButton.style.left = aleatoriox + "px";
+        naoButton.style.top = aleatorioy + "px";
+    }
+</script>
+</html>
